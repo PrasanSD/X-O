@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+    	div.container {
+    		text-align: left;
+    	}
+    	button.btn-outline-primary {
+    		width:100px;
+    	}
+    	button.btn-danger {
+    		width:300px;
+    	}
+    </style>
+	<title>X-O</title>
+  </head>
+<body>
+  <div class=container>
+  	<br>
+  	<div class="row">
+  	  <button class="btn-lg btn-outline-primary a1">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary a2">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary a3">&nbsp</button>
+  	</div>
+	<div class="row">
+  	  <button class="btn-lg btn-outline-primary b1">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary b2">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary b3">&nbsp</button>
+  	</div>
+  	<div class="row">
+  	  <button class="btn-lg btn-outline-primary c1">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary c2">&nbsp</button>
+  	  <button class="btn-lg btn-outline-primary c3">&nbsp</button>
+  	</div>
+  	<br>
+  	<div class="row">
+  	<button class="btn btn-danger">New game</button>
+    </div>
+  </div>
+<script type="text/javascript">
+let tempSign = "X";
+let wins = [];
+
+
+	let buttons = document.querySelectorAll("button");
+      function ClickHandler(event) {
+      	if (event.target.innerHTML === "&nbsp;" && tempSign === "X" ) {
+
+          event.target.innerHTML = tempSign;
+          tempSign = "O";
+      	  }
+      	else if (event.target.innerHTML === "&nbsp;" && tempSign === "O" ) {
+
+          event.target.innerHTML = tempSign;
+          tempSign = "X";
+      	  }
+      	else if (event.target.innerHTML === "New game") {
+      	  	for (const button of buttons) {
+	  button.innerHTML = "&nbsp;";
+      }
+      event.target.innerHTML = "New game";
+      	  };
+
+      	  wins = [
+          [document.querySelector("button.a1").innerHTML,document.querySelector("button.a2").innerHTML,document.querySelector("button.a3").innerHTML],
+          [document.querySelector("button.b1").innerHTML,document.querySelector("button.b2").innerHTML,document.querySelector("button.b3").innerHTML],
+          [document.querySelector("button.c1").innerHTML,document.querySelector("button.c2").innerHTML,document.querySelector("button.c3").innerHTML],
+          [document.querySelector("button.a1").innerHTML,document.querySelector("button.b1").innerHTML,document.querySelector("button.c1").innerHTML],
+          [document.querySelector("button.a2").innerHTML,document.querySelector("button.b2").innerHTML,document.querySelector("button.c2").innerHTML],
+          [document.querySelector("button.a3").innerHTML,document.querySelector("button.b3").innerHTML,document.querySelector("button.c3").innerHTML],
+          [document.querySelector("button.a1").innerHTML,document.querySelector("button.b2").innerHTML,document.querySelector("button.c3").innerHTML],
+          [document.querySelector("button.a3").innerHTML,document.querySelector("button.b2").innerHTML,document.querySelector("button.c1").innerHTML]];
+         
+          for (var i=0; i < wins.length; i++) {
+          	if (wins[i].toString() === "X,X,X") {
+          	alert("X wins!!!");
+          	break;
+            }
+            else if (wins[i].toString() === "O,O,O") {
+          	alert("O wins!!!");
+          	break;
+            }
+          };
+      }
+      
+      for (const button of buttons) {
+	  button.addEventListener("click", ClickHandler);
+      }
+	
+</script>
+
+</body>
+</html>
